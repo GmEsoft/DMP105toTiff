@@ -10,7 +10,7 @@ Description
 This project is a pretty good emulator of the Tandy DMP-105 Dot Matrix Printer, that creates a TIFF file from the data sent to the printer. 
 It also has some additional features found in its successor, the DMP-106.
 
-The generated TIFF files consist in a set of pages encoded as a bichrome bitmap compressed using the Macintosh RLE algorithl a.k.a. PackBits.
+The generated TIFF files consist in a set of pages encoded as a bilevel bitmap compressed using the Macintosh RLE algorithl a.k.a. PackBits.
 
 These can be viewed and printed on Windows using the Microsoft Office Document Imaging tool, or other similar programs.
 
