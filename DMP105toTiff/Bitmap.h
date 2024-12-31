@@ -25,7 +25,7 @@ public:
 	size_t size;
 
 	Bitmap( int p_width, int p_height, int p_unit, int p_cols, int p_lines,
-		int p_dpch, int p_dpcv, int p_cpih, int p_cpiv )
+		int p_dpch, int p_dpcv, int p_cpih, int p_cpiv, bool p_square )
 	{
 		// "dot" = printer dot  => dpi = printer dot per inch
 		// "pix" = bitmap pixel => ppi = bitmap pixel per inch
@@ -37,11 +37,11 @@ public:
 		ppih = xmaxsize * dpih;				// 6 * 120 = 720 pixels per inch
 		width = ppih * p_width / p_unit;	// 720 * 2100 / 254 = 5952 pixels wide
 
-		ymaxsize = 2;						// 2 pixels per dot
+		ymaxsize = p_square ? 10 : 2;		// 2 pixels per dot
 		dpcv = p_dpcv;						// 12 dots per char
 		dpiv = dpcv * p_cpiv;				// 12 * 6 = 72 dots per inch
 		ppiv = ymaxsize * dpiv;				// 2 * 72 = 144 pixels per inch
-		height = ppiv * p_height / p_unit;	// 144 * 3100 / 254 = 1757 hixels high
+		height = ppiv * p_height / p_unit;	// 144 * 3100 / 254 = 1757 pixels high
 
 		size = height*(width>>3);
 		bitmap = new byte[size];

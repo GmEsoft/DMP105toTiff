@@ -3,17 +3,18 @@
 #include <fstream>
 #include "DMP105.h"
 
-const char title[] = "** DMP105toTiff - v0.0.1-alpha - (C) 2024 GmEsoft, All rights reserved. **";
+const char title[] = "** DMP105toTiff - v0.0.2-alpha - (C) 2024 GmEsoft, All rights reserved. **";
 
 const char help[] =
 	"Usage:   DMP105toTiff [options] [-i:InputFile[.txt]] -o:OutputFile[.tif]\n"
-	"         -I:inputfile[.txt]   input source file (default: stdin)\n"
-	"         -O:outputfile[.tif]  output TIFF file\n"
+	"         -i:Inputfile[.txt]   input source file (default: stdin)\n"
+	"         -o:Outputfile[.tif]  output TIFF file\n"
 	"Options: -D   Self-test/Demo page and exit\n"
 	"         -T:n Top Lines\n"
 	"         -L   Lines per page [72]\n"
-	"         -P   Horizontal Pitch (P=Pica ,E=Elite, C=Condensed\n"
+	"         -P   Horizontal Pitch (P=Pica ,E=Elite, C=Condensed)\n"
 	"         -Wn  Dot Weight (1-3)\n"
+	"         -Q   Square pixels\n"
 	"         -C   CR=CR (default: CR=CR+LF)\n"
 	"         -Sn  Skip n lines at end of page\n"
 	;
@@ -38,6 +39,7 @@ int main( int argc, const char* argp[] )
 	int pitch = 0;
 	int weight = 2;
 	bool crlf = true;
+	bool square = false;
 
 	for ( int i=1; i<argc; ++i )
 	{
@@ -95,6 +97,9 @@ int main( int argc, const char* argp[] )
 			case 'C':
 				crlf = false;
 				break;
+			case 'Q':
+				square = true;
+				break;
 			case '?':
 				cerr << help << endl;
 				exit( 0 );
@@ -139,7 +144,7 @@ int main( int argc, const char* argp[] )
 
 	istream &istr = !infile.empty() ? in : cin;
 
-	DMP105 prn( out, 2100, 3100, 254, lines );
+	DMP105 prn( out, 2100, 3100, 254, lines, square );
 
 	prn.setPitch( pitch );
 	prn.setCrLf( crlf );

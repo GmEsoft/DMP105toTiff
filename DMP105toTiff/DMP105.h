@@ -53,9 +53,9 @@ public:
 	const FontInfo &font_robotron;
 	const FontInfo *pFont;
 
-	DMP105( ostream &ostr, int p_width, int p_height, int p_unit, int p_lines )
+	DMP105( ostream &ostr, int p_width, int p_height, int p_unit, int p_lines, bool p_square )
 	: bitmap( p_width, p_height, p_unit,
-		/*p_cols*/80, p_lines, /*p_dpch*/12, /*p_dpcv*/12, /*p_cpih*/10, /*p_cpiv*/6 )
+		/*p_cols*/80, p_lines, /*p_dpch*/12, /*p_dpcv*/12, /*p_cpih*/10, /*p_cpiv*/6, p_square )
 	, font_tandy( FONT_TANDY )
 	, font_ibm_2( FONT_IBM_2 )
 	, font_robotron( FONT_ROBOTRON )
